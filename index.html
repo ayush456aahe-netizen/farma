@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MediNearby - Smart medicine reminder website with notifications and local storage." />
+  <title>MediNearby | Medicine Reminder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <div class="app-shell">
+    <header class="hero">
+      <nav class="nav glass-card">
+        <div class="brand-wrap">
+          <div class="brand-icon">✚</div>
+          <div>
+            <h1>MediNearby</h1>
+            <p>Smart medicine reminder for daily health routine</p>
+          </div>
+        </div>
+        <div class="nav-actions">
+          <button id="enableNotificationsBtn" class="btn btn-glass">Enable Notifications</button>
+          <button id="clearAllBtn" class="btn btn-danger-soft">Clear All</button>
+        </div>
+      </nav>
+
+      <section class="hero-grid">
+        <div class="hero-copy glass-card card-pad">
+          <span class="badge">Beautiful • Simple • Useful</span>
+          <h2>Track medicine time, food instructions, and reminders in one place.</h2>
+          <p>
+            Add medicine name, how to take it, and reminder time. When the time comes,
+            MediNearby shows browser notifications and keeps your schedule saved in your device.
+          </p>
+
+          <div class="stats-grid">
+            <article>
+              <strong id="medicineCount">0</strong>
+              <span>Medicines</span>
+            </article>
+            <article>
+              <strong id="todayCount">0</strong>
+              <span>Today Reminders</span>
+            </article>
+            <article>
+              <strong id="activeCount">0</strong>
+              <span>Active Plans</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="hero-panel premium-panel card-pad">
+          <div class="panel-head">
+            <div>
+              <span class="panel-label">Next Reminder</span>
+              <h3 id="nextReminder">No reminder yet</h3>
+            </div>
+            <span class="live-dot">Live</span>
+          </div>
+          <div id="todayTimeline" class="timeline"></div>
+        </div>
+      </section>
+    </header>
+
+    <main class="main-grid">
+      <section class="glass-card card-pad form-section">
+        <div class="section-title">
+          <h3>Add Medicine</h3>
+          <p>Create a medicine reminder schedule</p>
+        </div>
+
+        <form id="medicineForm" class="medicine-form">
+          <div class="field-grid two-col">
+            <label>
+              Medicine Name
+              <input type="text" id="name" placeholder="e.g. Dolo 650" required />
+            </label>
+            <label>
+              Dosage
+              <input type="text" id="dosage" placeholder="e.g. 1 tablet" />
+            </label>
+          </div>
+
+          <div class="field-grid two-col">
+            <label>
+              How to Eat
+              <select id="foodInstruction">
+                <option>Before food</option>
+                <option selected>After food</option>
+                <option>With food</option>
+                <option>Empty stomach</option>
+              </select>
+            </label>
+            <label>
+              Time of Eating / Reminder Time
+              <input type="text" id="times" placeholder="08:00, 14:00, 21:00" required />
+            </label>
+          </div>
+
+          <div class="field-grid two-col">
+            <label>
+              Start Date
+              <input type="date" id="startDate" />
+            </label>
+            <label>
+              End Date
+              <input type="date" id="endDate" />
+            </label>
+          </div>
+
+          <label>
+            Extra Notes
+            <textarea id="notes" rows="4" placeholder="Drink water, avoid tea, take after lunch, etc."></textarea>
+          </label>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save Medicine</button>
+            <button type="button" id="loadDemoBtn" class="btn btn-secondary">Load Demo Data</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="glass-card card-pad list-section">
+        <div class="section-title split-head">
+          <div>
+            <h3>Your Medicine Schedule</h3>
+            <p>Mark taken, review times, and delete reminders</p>
+          </div>
+          <input id="searchInput" class="search-input" type="text" placeholder="Search medicine" />
+        </div>
+
+        <div id="medicineList" class="medicine-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="script.js"></script>
+</body>
+</html>
